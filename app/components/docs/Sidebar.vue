@@ -11,7 +11,13 @@ const { data: navigation } = await useAsyncData('docs-navigation', () =>
 // each of those in turn holding the actual page links we want in the nav.
 const groups = computed(() => navigation.value?.[0]?.children ?? [])
 
-const isActive = (path: string) => route.path === path
+// Same trailing-slash normalization as pages/docs/[...slug].vue -- a real
+// visit's route.path carries the trailing slash a static host serves
+// directory routes with (e.g. "/docs/foo/"), but item.path/group.path from
+// Content's nav tree never do, so a literal === would never highlight the
+// active item outside of local dev preview.
+const normalizedRoutePath = computed(() => route.path.replace(/(.+)\/$/, '$1'))
+const isActive = (path: string) => normalizedRoutePath.value === path
 </script>
 
 <template>

@@ -7,8 +7,19 @@ definePageMeta({ layout: false })
 
 const route = useRoute()
 
-const { data: page } = await useAsyncData(`docs-${route.path}`, () =>
-  queryCollection('docs').path(route.path).first()
+// Nuxt Content stores paths with no trailing slash, but a static host
+// (GitHub Pages included) serves directory-style routes with one --
+// requesting /docs/foo/ (as every real link on this domain resolves to,
+// once the host appends the trailing slash to reach foo/index.html) means
+// route.path is "/docs/foo/", not the "/docs/foo" used at prerender time.
+// Without normalizing, queryCollection's path lookup misses on every real
+// visit (only ever "worked" during nuxt generate's own internal crawl,
+// which followed un-slashed <NuxtLink> hrefs) and this page 404s in
+// production while looking fine in local dev preview.
+const normalizedPath = computed(() => route.path.replace(/(.+)\/$/, '$1'))
+
+const { data: page } = await useAsyncData(`docs-${normalizedPath.value}`, () =>
+  queryCollection('docs').path(normalizedPath.value).first()
 )
 
 if (!page.value) {
