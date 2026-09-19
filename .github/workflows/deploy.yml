@@ -35,9 +35,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 22, not 20 -- Nuxt 4.5.2 and its own dependencies (@nuxt/nitro-server,
+      # @nuxt/vite-builder) require Node ^22.19/^24.11/>=26; Node 20 doesn't
+      # satisfy any engines range, and npm ci under it reported unrelated-
+      # looking "Missing: X from lock file" errors for optional native
+      # bindings (the engine mismatch changes which optional deps npm
+      # considers wanted) rather than a real lockfile problem.
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: "npm"
           cache-dependency-path: package-lock.json
 
