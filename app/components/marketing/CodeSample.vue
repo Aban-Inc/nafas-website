@@ -20,6 +20,10 @@ app.Run();`
         </p>
       </div>
       <UiCard class="snippet">
+        <div class="snippet-bar">
+          <span class="snippet-lang">csharp</span>
+          <UiCopyButton :text="code" />
+        </div>
         <pre class="font-mono"><code>{{ code }}</code></pre>
       </UiCard>
     </div>
@@ -43,6 +47,21 @@ h2 { font-size: 26px; margin: 0 0 14px; }
   padding: 1px 6px;
   font-size: 0.9em;
   color: var(--accent-bright);
+}
+.snippet-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -24px -24px 16px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.snippet-lang {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-label);
 }
 .snippet pre {
   margin: 0;

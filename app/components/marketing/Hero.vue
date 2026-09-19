@@ -18,7 +18,8 @@
       </div>
 
       <div class="install-line font-mono">
-        <span class="prompt">&gt;</span> dotnet add package Nafas.Observability
+        <span><span class="prompt">&gt;</span> dotnet add package Nafas.Observability</span>
+        <UiCopyButton text="dotnet add package Nafas.Observability" />
       </div>
     </div>
   </section>
@@ -63,11 +64,15 @@ h1 {
 .cta-row { display: flex; gap: 12px; margin-top: 6px; }
 
 .install-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: 18px;
   background: var(--bg-solid);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 12px 20px;
+  padding: 12px 14px 12px 20px;
   font-size: 14px;
   color: var(--text-secondary);
 }
