@@ -4,7 +4,7 @@
       <UiBadge>Free &amp; open source · FSL-1.1-ALv2</UiBadge>
       <h1>Self-hosted observability,<br />embedded in your own app.</h1>
       <p class="lead">
-        Logs, metrics, traces, and alerts for ASP.NET Core — with real
+        Logs, metrics, traces, and alerts for ASP.NET Core, with real
         ingestion and <strong>zero external dependencies</strong>. No
         collector, no separate service, no Docker Compose file. Two calls in
         <code class="font-mono">Program.cs</code> and it's running.

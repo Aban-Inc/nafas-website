@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // No explicit `title` here -- app.vue's titleTemplate already renders the
-// no-title fallback as the full branded headline ("Nafas — Self-hosted
+// no-title fallback as the full branded headline ("Nafas: Self-hosted
 // observability..."); setting one here would either duplicate it or (with
 // the template's "<title> · Nafas" suffix) read as "<title> · Nafas · Nafas".
 useSeoMeta({

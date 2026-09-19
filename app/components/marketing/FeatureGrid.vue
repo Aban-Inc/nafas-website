@@ -5,12 +5,12 @@
 const features = [
   {
     title: 'Logs',
-    description: 'Every ILogger call, captured automatically the moment AddNafasServer() runs — no bespoke sink to wire up.',
+    description: 'Every ILogger call, captured automatically the moment AddNafasServer() runs. No bespoke sink to wire up.',
     icon: 'M4 6h16M4 12h16M4 18h10'
   },
   {
     title: 'Metrics',
-    description: 'Built on System.Diagnostics.Metrics — CPU, memory, and your own custom meters, charted out of the box.',
+    description: 'Built on System.Diagnostics.Metrics: CPU, memory, and your own custom meters, charted out of the box.',
     icon: 'M4 17l4-5 3 3 4-7 5 6'
   },
   {
@@ -21,7 +21,7 @@ const features = [
   },
   {
     title: 'Alerting',
-    description: 'Threshold and absence rules, authored from the dashboard — fires only on state transitions, delivered to your own webhook.',
+    description: 'Threshold and absence rules, authored from the dashboard. Fires only on state transitions, delivered to your own webhook.',
     icon: 'M12 2a6 6 0 00-6 6v3.586l-1.707 1.707A1 1 0 005 15h14a1 1 0 00.707-1.707L18 11.586V8a6 6 0 00-6-6zM9 18a3 3 0 006 0H9z'
   }
 ]

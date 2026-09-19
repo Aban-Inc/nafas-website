@@ -8,7 +8,7 @@
             <h3 class="yes">Nafas is a good fit if</h3>
             <ul>
               <li>you run one app (or a handful) and want real observability without standing up infrastructure</li>
-              <li>you want the same "just works" posture as Hangfire's own dashboard — secured to local requests by default</li>
+              <li>you want the same "just works" posture as Hangfire's own dashboard: secured to local requests by default</li>
               <li>SQLite or SQL Server already covers your storage needs</li>
             </ul>
           </div>

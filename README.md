@@ -5,13 +5,13 @@ The official marketing + docs site for
 served at [package.nafas.cloud](https://package.nafas.cloud).
 
 Nuxt 3 + [`@nuxt/content`](https://content.nuxt.com), statically generated
-(`nuxt generate`) — no server runtime, so it deploys as plain files to
+(`nuxt generate`). No server runtime, so it deploys as plain files to
 GitHub Pages today and to any static host later with no code changes.
 
 ## Design
 
 Visually matches the embedded dashboard this site describes: dark theme,
-teal/green accent, self-hosted Vazir font (no Google Fonts/CDN — the
+teal/green accent, self-hosted Vazir font (no Google Fonts/CDN: the
 product this site is for is itself a zero-external-dependency package).
 See `app/assets/css/tokens.css` for the exact tokens, ported from
 `Nafas.Observability/ClientApp/src/assets/css/main.css` in the package

@@ -11,7 +11,7 @@ const rows = [
   <section class="signal-table">
     <div class="container">
       <h2>Automatic. No instrumentation code.</h2>
-      <p class="sub">Ingestion is decoupled from your request pipeline via a bounded, non-blocking channel — a burst of traffic slows nothing down.</p>
+      <p class="sub">Ingestion is decoupled from your request pipeline via a bounded, non-blocking channel: a burst of traffic slows nothing down.</p>
       <UiCard class="table-card">
         <div class="row header">
           <span>Signal</span><span>Source</span><span>Notes</span>
