@@ -32,7 +32,14 @@ const copyText = computed(() => props.code ?? preEl.value?.textContent ?? '')
 </template>
 
 <style scoped>
-.pro-pre { position: relative; }
+.pro-pre {
+  position: relative;
+  /* Each fenced code block is its own block-level element with the inner
+     <pre>'s own margin forced to 0 below -- without this, consecutive
+     blocks (e.g. a bash line immediately followed by a csharp block) sit
+     flush against each other with no breathing room. */
+  margin: 24px 0;
+}
 .pro-pre-bar {
   display: flex;
   align-items: center;
@@ -56,5 +63,16 @@ const copyText = computed(() => props.code ?? preEl.value?.textContent ?? '')
      needs to win the top two now that the language/copy bar sits above. */
   border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
   margin: 0;
+}
+/* Shiki assigns each token its own inline color (light/dark theme pair via
+   CSS vars), tuned for a generic light/dark background -- against this
+   site's own dark palette some of those (a bash "flag"-like token color in
+   particular) read as low-contrast/hard to parse next to plain text, and
+   the resulting multi-color wall clashes with the rest of the site's
+   single-accent-color restraint. Flattened to one readable color, same
+   choice the homepage's own code sample (MarketingCodeSample, plain text,
+   no highlighter) already made. */
+.pro-pre :deep(pre) span {
+  color: var(--text-primary) !important;
 }
 </style>
