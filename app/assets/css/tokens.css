@@ -1,0 +1,86 @@
+/*
+  Ported verbatim from Nafas.Observability/ClientApp/src/assets/css/main.css
+  (the embedded dashboard's own design tokens) so this marketing site reads
+  as unmistakably the same product, not a generic invented look.
+
+  Dark is the only ACTIVE theme for v1 -- the dashboard itself defaults to
+  dark, and a marketing site's job is to look like the product. The light
+  block below is kept, dormant, under [data-theme="light"], a selector
+  nothing on this site ever applies -- so a future light-mode toggle is a
+  cheap CSS-already-there addition, not a rebuild.
+*/
+
+@font-face {
+  font-family: 'Vazir';
+  src: url('../fonts/vazir/Vazir-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazir';
+  src: url('../fonts/vazir/Vazir-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Vazir';
+  src: url('../fonts/vazir/Vazir-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --accent:         #00BFA5;
+  --accent-dark:    #00897B;
+  --accent-dim:     rgba(0,191,165,0.10);
+
+  /* dark theme tokens, active unconditionally (no [data-theme] gate) */
+  --bg-base:        #0F1117;
+  --bg-sidebar:     #12141C;
+  --bg-card:        rgba(26,29,39,0.72);
+  --bg-solid:       #1A1D27;
+  --bg-hover:       rgba(255,255,255,0.04);
+  --border-subtle:  rgba(255,255,255,0.06);
+  --border-medium:  rgba(255,255,255,0.10);
+  --text-primary:   #E6E8EC;
+  --text-secondary: #9AA0AC;
+  --text-muted:     #5B6170;
+  --text-label:     #4C5260;
+  --accent-bright:  #2DD4BF;
+  --error:          #F0616D;
+  --error-dim:      rgba(240,97,109,0.14);
+  --warn:           #E8B23A;
+  --warn-dim:       rgba(232,178,58,0.14);
+  --info-dim:       rgba(0,191,165,0.14);
+
+  /* not tokenized upstream either -- a small scale established here,
+     consistent with the dashboard's own hardcoded 6-9px component radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+}
+
+/* Dormant -- see file comment. Only takes effect if something ever sets
+   data-theme="light" on <html>, which nothing on this site does today. */
+[data-theme="light"] {
+  --bg-base:        #F4F6FA;
+  --bg-sidebar:     #FFFFFF;
+  --bg-card:        rgba(255,255,255,0.90);
+  --bg-solid:       #FFFFFF;
+  --bg-hover:       rgba(0,0,0,0.04);
+  --border-subtle:  rgba(0,0,0,0.08);
+  --border-medium:  rgba(0,0,0,0.12);
+  --text-primary:   #1A1D27;
+  --text-secondary: #4A5060;
+  --text-muted:     #8A90A0;
+  --text-label:     #A0A6B4;
+  --accent-bright:  #00897B;
+  --error:          #D93025;
+  --error-dim:      rgba(217,48,37,0.10);
+  --warn:           #C07A00;
+  --warn-dim:       rgba(192,122,0,0.10);
+  --info-dim:       rgba(0,191,165,0.10);
+}

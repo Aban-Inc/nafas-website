@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+# Builds the Nuxt site as static output (`nuxt generate`) and deploys it to
+# GitHub Pages via GitHub's own Pages deployment actions (not a third-party
+# gh-pages-push action) -- these publish through GitHub's native Pages
+# deployment API, not a commit to a gh-pages branch, so there's no extra
+# branch to keep in sync or accidentally diverge from main.
+#
+# Auth: GitHub's OIDC-backed `id-token: write` permission, exchanged
+# internally by actions/deploy-pages -- no PAT or long-lived secret needed.
+# Requires a one-time manual step in this repo's own settings: Settings ->
+# Pages -> Source = "GitHub Actions".
+#
+# The custom domain (package.nafas.cloud) is carried via public/CNAME,
+# which Nuxt copies verbatim into the generated static output -- NOT a
+# repo-root CNAME file, which nuxt generate would never see.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # nuxt generate -- static output only, no server runtime -- this is
+      # what makes the output servable as plain files by GitHub Pages now
+      # and any static host (nginx, S3, etc.) later with zero code changes.
+      - name: Generate static site
+        run: npm run generate
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.output/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
