@@ -47,8 +47,20 @@ jobs:
           cache: "npm"
           cache-dependency-path: package-lock.json
 
+      # npm install, not npm ci -- verified empirically that this repo's
+      # package-lock.json cannot be made to satisfy npm ci reliably: Nuxt's
+      # own toolchain (rolldown-vite) depends on oxc-parser, a fast-moving
+      # pre-1.0 package whose exact resolved version differs between the
+      # npm version on this dev machine (11.8.0) and the one bundled with
+      # actions/setup-node's Node 22 (10.x) -- npm ci failed here with
+      # "Invalid: lock file's oxc-parser/binding-*@0.139.0 does not satisfy
+      # ...@0.150.0" even right after a from-scratch local reinstall with no
+      # cached state. npm install re-resolves a currently-valid tree each
+      # run instead of requiring byte-for-byte reproduction of a lockfile
+      # that drifts out from under it; acceptable here since this is a
+      # static marketing site's build tool, not the versioned NuGet package.
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # nuxt generate -- static output only, no server runtime -- this is
       # what makes the output servable as plain files by GitHub Pages now
